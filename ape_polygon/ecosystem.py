@@ -4,8 +4,8 @@ from ape_ethereum.ecosystem import Ethereum, NetworkConfig
 
 NETWORKS = {
     # chain_id, network_id
-    "opera": (137, 137),
-    "testnet": (80001, 80001),
+    "mainnet": (137, 137),
+    "mumbai": (80001, 80001),
 }
 
 
