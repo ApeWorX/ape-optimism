@@ -4,8 +4,8 @@ To get started with working on the codebase, use the following steps prepare you
 
 ```bash
 # clone the github repo and navigate into the folder
-git clone https://github.com/ApeWorX/ape-polygon.git
-cd ape-polygon
+git clone https://github.com/ApeWorX/ape-optimism.git
+cd ape-optimism
 
 # create and load a virtual environment
 python3 -m venv venv

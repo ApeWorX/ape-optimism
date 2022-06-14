@@ -42,28 +42,28 @@ with open("./README.md") as readme:
 
 
 setup(
-    name="ape-polygon",
+    name="ape-optimism",
     use_scm_version=True,
     setup_requires=["setuptools_scm"],
-    description="""ape-polygon: Ape Ecosystem Plugin for Polygon""",
+    description="""ape-optimism: Ape Ecosystem Plugin for Optimism""",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="ApeWorX Ltd.",
     author_email="admin@apeworx.io",
-    url="https://github.com/ApeWorX/ape-polygon",
+    url="https://github.com/ApeWorX/ape-optimism",
     include_package_data=True,
     install_requires=[
         "importlib-metadata ; python_version<'3.8'",
-        "eth-ape>=0.2.1,<0.3.0",
+        "eth-ape>=0.3.0,<0.4.0",
     ],  # NOTE: Add 3rd party libraries here
     python_requires=">=3.7.2,<3.11",
     extras_require=extras_require,
-    py_modules=["ape_polygon"],
+    py_modules=["ape_optimism"],
     license="Apache-2.0",
     zip_safe=False,
     keywords="ethereum",
     packages=find_packages(exclude=["tests", "tests.*"]),
-    package_data={"ape_polygon": ["py.typed"]},
+    package_data={"ape_optimism": ["py.typed"]},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",

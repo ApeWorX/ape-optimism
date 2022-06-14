@@ -1,6 +1,6 @@
-# Ape Polygon Ecosystem Plugin
+# Ape Optimism Ecosystem Plugin
 
-Ecosystem Plugin for Polygon support in Ape
+Ecosystem Plugin for Optimism support in Ape
 
 ## Dependencies
 
@@ -13,7 +13,7 @@ Ecosystem Plugin for Polygon support in Ape
 You can install this plugin using `ape`:
 
 ```bash
-ape plugins install polygon
+ape plugins install optimism
 ```
 
 or via config file:
@@ -21,7 +21,7 @@ or via config file:
 ```yaml
 # ape-config.yaml
 plugins:
-  - name: polygon
+  - name: optimism
 ```
 
 ### via `pip`
@@ -29,7 +29,7 @@ plugins:
 You can install the latest release via [`pip`](https://pypi.org/project/pip/):
 
 ```bash
-pip install ape-polygon
+pip install ape-optimism
 ```
 
 ### via `setuptools`
@@ -37,17 +37,17 @@ pip install ape-polygon
 You can clone the repository and use [`setuptools`](https://github.com/pypa/setuptools) for the most up-to-date version:
 
 ```bash
-git clone https://github.com/ApeWorX/ape-polygon.git
-cd ape-polygon
+git clone https://github.com/ApeWorX/ape-optimism.git
+cd ape-optimism
 python3 setup.py install
 ```
 
 ## Quick Usage
 
-Installing this plugin adds support for the Polygon ecosystem:
+Installing this plugin adds support for the Optimism ecosystem:
 
 ```bash
-ape console --network polygon:opera
+ape console --network optimism:kovan
 ```
 
 ## Development
