@@ -16,7 +16,7 @@ NETWORKS = {
     "mainnet": (10, 10),
     "kovan": (69, 69),
 }
-
+from ape.types import TransactionSignature
 
 class OptimismConfig(PluginConfig):
     mainnet: NetworkConfig = NetworkConfig(required_confirmations=1, block_time=2)  # type: ignore
