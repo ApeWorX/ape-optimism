@@ -10,13 +10,13 @@ from ape_ethereum.transactions import (
     StaticFeeTransaction,
     TransactionType,
 )
+from ape.types import TransactionSignature
 
 NETWORKS = {
     # chain_id, network_id
     "mainnet": (10, 10),
     "kovan": (69, 69),
 }
-from ape.types import TransactionSignature
 
 
 class OptimismConfig(PluginConfig):
