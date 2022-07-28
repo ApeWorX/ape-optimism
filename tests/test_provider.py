@@ -1,5 +1,5 @@
 def test_use_provider(accounts, networks):
-    with networks.bsc.local.use_provider("test"):
+    with networks.optimisim.local.use_provider("test"):
         account = accounts.test_accounts[0]
         receipt = account.transfer(account, 100)
 
