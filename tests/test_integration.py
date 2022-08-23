@@ -1,8 +1,10 @@
 EXPECTED_OUTPUT = """
-optimisim
+optimism
 ├── mainnet
 │   └── geth  (default)
-├── testnet
+├── kovan
+│   └── geth  (default)
+├── goerli
 │   └── geth  (default)
 └── local  (default)
     └── test  (default)
@@ -14,7 +16,7 @@ def assert_rich_text(actual: str, expected: str):
     The output from `rich` causes a bunch of extra spaces to
     appear at the end of each line. For easier testing, we remove those here.
     """
-    actual = f"optimisim{actual.split('optimisim')[-1]}"
+    actual = f"optimism{actual.split('optimism')[-1]}"
     if "ethereum" in actual:
         actual = actual.split("ethereum")[0]
 

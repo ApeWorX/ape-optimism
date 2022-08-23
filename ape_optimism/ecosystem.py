@@ -1,17 +1,17 @@
 from ape.api import TransactionAPI
 from ape.api.config import PluginConfig
+from ape.api.networks import LOCAL_NETWORK_NAME
 from ape.types import TransactionSignature
 from ape_ethereum.ecosystem import Ethereum, NetworkConfig
 from ape_ethereum.transactions import StaticFeeTransaction, TransactionType
 from eth_typing import HexStr
 from eth_utils import add_0x_prefix, decode_hex
-from ape.api.networks import LOCAL_NETWORK_NAME
 
 NETWORKS = {
     # chain_id, network_id
     "mainnet": (10, 10),
     "kovan": (69, 69),
-    "goerli": (420, 420)
+    "goerli": (420, 420),
 }
 
 

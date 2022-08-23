@@ -1,5 +1,5 @@
 def test_use_provider(accounts, networks):
-    with networks.optimisim.local.use_provider("test"):
+    with networks.optimism.local.use_provider("test"):
         account = accounts.test_accounts[0]
         receipt = account.transfer(account, 100)
 
