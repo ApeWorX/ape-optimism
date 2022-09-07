@@ -1,10 +1,10 @@
-# Ape Optimism Ecosystem Plugin
+# Quick Start
 
 Ecosystem Plugin for Optimism support in Ape
 
 ## Dependencies
 
-* [python3](https://www.python.org/downloads) version 3.7 or greater, python3-dev
+* [python3](https://www.python.org/downloads) version 3.8 or greater, python3-dev
 
 ## Installation
 
@@ -53,7 +53,3 @@ ape console --network optimism:kovan
 ## Development
 
 Comments, questions, criticisms and pull requests are welcomed.
-
-## License
-
-This project is licensed under the [Apache 2.0](LICENSE).
