@@ -31,12 +31,18 @@ def _create_network_config(
     )  # type: ignore
 
 
+def _create_local_config(default_provider: Optional[str] = None) -> NetworkConfig:
+    return _create_network_config(
+        required_confirmations=0, block_time=0, default_provider=default_provider
+    )
+
+
 class OptimismConfig(PluginConfig):
     mainnet: NetworkConfig = _create_network_config()
+    mainnet_fork: NetworkConfig = _create_local_config()
     goerli: NetworkConfig = _create_network_config()
-    local: NetworkConfig = _create_network_config(
-        required_confirmations=0, default_provider="test", block_time=0
-    )
+    goerli_fork: NetworkConfig = _create_local_config()
+    local: NetworkConfig = _create_local_config(default_provider="test")
     default_network: str = LOCAL_NETWORK_NAME
 
 
