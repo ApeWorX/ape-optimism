@@ -1,6 +1,6 @@
 # Quick Start
 
-Ecosystem Plugin for Optimism support in Ape
+Ecosystem Plugin for Optimism support in Ape.
 
 ## Dependencies
 
@@ -47,7 +47,7 @@ python3 setup.py install
 Installing this plugin adds support for the Optimism ecosystem:
 
 ```bash
-ape console --network optimism:kovan
+ape console --network optimism:goerli:
 ```
 
 ## Development
