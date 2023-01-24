@@ -8,7 +8,7 @@ from ape.types import TransactionSignature
 from ape_ethereum.ecosystem import Ethereum, NetworkConfig
 from ape_ethereum.transactions import StaticFeeTransaction, TransactionType
 from eth_typing import HexStr
-from eth_utils import add_0x_prefix, decode_hex
+from eth_utils import add_0x_prefix
 
 NETWORKS = {
     # chain_id, network_id
@@ -78,8 +78,8 @@ class Optimism(Ethereum):
         if isinstance(kwargs.get("chainId"), str):
             kwargs["chainId"] = int(kwargs["chainId"], 16)
 
-        if "input" in kwargs:
-            kwargs["data"] = decode_hex(kwargs.pop("hash"))
+        if "hash" in kwargs:
+            kwargs["data"] = kwargs.pop("hash")
 
         if all(field in kwargs for field in ("v", "r", "s")):
             kwargs["signature"] = TransactionSignature(
