@@ -82,7 +82,7 @@ class Optimism(Ethereum):
             kwargs["data"] = decode_hex(kwargs.pop("hash"))
 
         if all(field in kwargs for field in ("v", "r", "s")):
-            kwargs["signature"] = TransactionSignature(  # type: ignore
+            kwargs["signature"] = TransactionSignature(
                 v=kwargs["v"],
                 r=bytes(kwargs["r"]),
                 s=bytes(kwargs["s"]),
