@@ -28,7 +28,7 @@ def _create_network_config(
 ) -> NetworkConfig:
     return NetworkConfig(
         required_confirmations=required_confirmations, block_time=block_time, **kwargs
-    )  # type: ignore
+    )
 
 
 def _create_local_config(default_provider: Optional[str] = None) -> NetworkConfig:
