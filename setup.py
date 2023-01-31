@@ -10,7 +10,7 @@ extras_require = {
         "hypothesis>=6.2.0,<7.0",  # Strategy-based fuzzer
     ],
     "lint": [
-        "black>=22.10.0",  # auto-formatter and linter
+        "black>=22.12.0",  # auto-formatter and linter
         "mypy>=0.991",  # Static type analyzer
         "types-setuptools",  # Needed due to mypy typeshed
         "flake8>=5.0.4",  # Style linter
@@ -57,7 +57,7 @@ setup(
     url="https://github.com/ApeWorX/ape-optimism",
     include_package_data=True,
     install_requires=[
-        "eth-ape>=0.5.2,<0.6.0",
+        "eth-ape>=0.6.0,<0.7",
     ],
     python_requires=">=3.8,<4",
     extras_require=extras_require,

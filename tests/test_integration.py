@@ -2,8 +2,6 @@ EXPECTED_OUTPUT = """
 optimism
 ├── mainnet
 │   └── geth  (default)
-├── kovan
-│   └── geth  (default)
 ├── goerli
 │   └── geth  (default)
 └── local  (default)
@@ -15,20 +13,21 @@ def assert_rich_text(actual: str, expected: str):
     """
     The output from `rich` causes a bunch of extra spaces to
     appear at the end of each line. For easier testing, we remove those here.
+    Also, we ignore whether the expected line is at the end or in the middle
+    of the output to handle cases when the test-runner has additional plugins
+    installed.
     """
-    actual = f"optimism{actual.split('optimism')[-1]}"
-    if "ethereum" in actual:
-        actual = actual.split("ethereum")[0]
+    expected_lines = [
+        x.replace("└", "").replace("├", "").replace("│", "").strip()
+        for x in expected.strip().split("\n")
+    ]
+    actual_lines = [
+        x.replace("└", "").replace("├", "").replace("│", "").strip()
+        for x in actual.strip().split("\n")
+    ]
 
-    expected = expected.strip()
-    lines = actual.split("\n")
-    new_lines = []
-    for line in lines:
-        if line:
-            new_lines.append(line.rstrip())
-
-    actual = "\n".join(new_lines)
-    assert actual == expected
+    for expected_line in expected_lines:
+        assert expected_line in actual_lines
 
 
 def test_networks(runner, cli):
