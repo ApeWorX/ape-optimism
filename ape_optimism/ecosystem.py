@@ -95,7 +95,7 @@ class Optimism(Ethereum):
 
     def get_transaction_type(self, _type: Optional[Union[int, str, bytes]]) -> TransactionType:
         if _type is None:
-            version = TransactionType.DYNAMIC
+            version = TransactionType.STATIC
         elif not isinstance(_type, int):
             version = TransactionType(self.conversion_manager.convert(_type, int))
         else:
