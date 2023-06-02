@@ -1,4 +1,4 @@
-from typing import Optional, Type, Union, cast
+from typing import Dict, Optional, Type, Union, cast
 
 from ape.api import TransactionAPI
 from ape.api.config import PluginConfig
@@ -6,9 +6,12 @@ from ape.api.networks import LOCAL_NETWORK_NAME
 from ape.exceptions import ApeException
 from ape.types import TransactionSignature
 from ape_ethereum.ecosystem import Ethereum, NetworkConfig
-from ape_ethereum.transactions import StaticFeeTransaction, TransactionType
-from eth_typing import HexStr
-from eth_utils import add_0x_prefix
+from ape_ethereum.transactions import (
+    AccessListTransaction,
+    DynamicFeeTransaction,
+    StaticFeeTransaction,
+    TransactionType,
+)
 
 NETWORKS = {
     # chain_id, network_id
@@ -62,7 +65,7 @@ class Optimism(Ethereum):
             :class:`~ape.api.transactions.TransactionAPI`
         """
 
-        transaction_type = _get_transaction_type(kwargs.get("type"))
+        transaction_type = self.get_transaction_type(kwargs.get("type"))
         kwargs["type"] = transaction_type.value
         txn_class = _get_transaction_cls(transaction_type)
 
@@ -90,28 +93,21 @@ class Optimism(Ethereum):
 
         return txn_class.parse_obj(kwargs)
 
-
-def _get_transaction_type(_type: Optional[Union[int, str, bytes]]) -> TransactionType:
-    if not _type:
-        return TransactionType.STATIC
-
-    if _type is None:
-        _type = TransactionType.STATIC.value
-    elif isinstance(_type, int):
-        _type = f"0{_type}"
-    elif isinstance(_type, bytes):
-        _type = _type.hex()
-
-    suffix = _type.replace("0x", "")
-    if len(suffix) == 1:
-        _type = f"{_type.rstrip(suffix)}0{suffix}"
-
-    return TransactionType(add_0x_prefix(HexStr(_type)))
+    def get_transaction_type(self, _type: Optional[Union[int, str, bytes]]) -> TransactionType:
+        if _type is None:
+            version = TransactionType.DYNAMIC
+        elif not isinstance(_type, int):
+            version = TransactionType(self.conversion_manager.convert(_type, int))
+        else:
+            version = TransactionType(_type)
+        return version
 
 
 def _get_transaction_cls(transaction_type: TransactionType) -> Type[TransactionAPI]:
-    transaction_types = {
+    transaction_types: Dict[TransactionType, Type[TransactionAPI]] = {
         TransactionType.STATIC: StaticFeeTransaction,
+        TransactionType.DYNAMIC: DynamicFeeTransaction,
+        TransactionType.ACCESS_LIST: AccessListTransaction,
     }
     if transaction_type not in transaction_types:
         raise ApeOptimismError(f"Transaction type '{transaction_type}' not supported.")
