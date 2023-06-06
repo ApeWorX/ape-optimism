@@ -1,5 +1,4 @@
 import pytest
-
 from ape_ethereum.transactions import TransactionType
 
 
