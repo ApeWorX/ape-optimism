@@ -22,3 +22,8 @@ def runner():
 @pytest.fixture
 def cli():
     return ape_cli
+
+
+@pytest.fixture
+def optimism(networks):
+    return networks.optimism
