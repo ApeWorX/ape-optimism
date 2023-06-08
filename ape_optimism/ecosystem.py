@@ -36,7 +36,7 @@ def _create_network_config(
 
 def _create_local_config(default_provider: Optional[str] = None) -> NetworkConfig:
     return _create_network_config(
-        required_confirmations=0, block_time=0, default_provider=default_provider
+        required_confirmations=0, block_time=0, default_provider=default_provider, gas_limit="max"
     )
 
 
