@@ -1,3 +1,7 @@
+import pytest
+from ape._cli import cli as ape_cli
+from click.testing import CliRunner
+
 EXPECTED_OUTPUT = """
 optimism
 ├── mainnet
@@ -7,6 +11,16 @@ optimism
 └── local  (default)
     └── test  (default)
 """.strip()
+
+
+@pytest.fixture
+def runner():
+    return CliRunner()
+
+
+@pytest.fixture
+def cli():
+    return ape_cli
 
 
 def assert_rich_text(actual: str, expected: str):
@@ -30,6 +44,9 @@ def assert_rich_text(actual: str, expected: str):
         assert expected_line in actual_lines
 
 
-def test_networks(runner, cli):
+def test_networks(runner, cli, optimism):
+    optimism.mainnet.set_default_provider("geth")
+    optimism.goerli.set_default_provider("geth")
+
     result = runner.invoke(cli, ["networks", "list"])
     assert_rich_text(result.output, EXPECTED_OUTPUT)
