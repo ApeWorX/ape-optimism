@@ -8,6 +8,8 @@ optimism
 │   └── geth  (default)
 ├── goerli
 │   └── geth  (default)
+├── sepolia
+│   └── geth  (default)
 └── local  (default)
     └── test  (default)
 """.strip()
@@ -47,6 +49,7 @@ def assert_rich_text(actual: str, expected: str):
 def test_networks(runner, cli, optimism):
     optimism.mainnet.set_default_provider("geth")
     optimism.goerli.set_default_provider("geth")
+    optimism.sepolia.set_default_provider("geth")
 
     result = runner.invoke(cli, ["networks", "list"])
     assert_rich_text(result.output, EXPECTED_OUTPUT)
