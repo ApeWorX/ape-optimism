@@ -18,6 +18,7 @@ NETWORKS = {
     # chain_id, network_id
     "mainnet": (10, 10),
     "goerli": (420, 420),
+    "sepolia": (11155420, 11155420),
 }
 
 
@@ -54,6 +55,8 @@ class OptimismConfig(PluginConfig):
     mainnet_fork: NetworkConfig = _create_local_config()
     goerli: NetworkConfig = _create_network_config()
     goerli_fork: NetworkConfig = _create_local_config()
+    sepolia: NetworkConfig = _create_network_config()
+    sepolia_fork: NetworkConfig = _create_local_config()
     local: NetworkConfig = _create_local_config(default_provider="test")
     default_network: str = LOCAL_NETWORK_NAME
 
