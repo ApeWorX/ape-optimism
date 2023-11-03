@@ -6,7 +6,7 @@ from ape.api.networks import LOCAL_NETWORK_NAME
 from ape.exceptions import ApeException
 from ape.types import TransactionSignature
 from ape.utils import DEFAULT_LOCAL_TRANSACTION_ACCEPTANCE_TIMEOUT
-from ape_ethereum.ecosystem import Ethereum, NetworkConfig
+from ape_ethereum.ecosystem import Ethereum, ForkedNetworkConfig, NetworkConfig
 from ape_ethereum.transactions import (
     AccessListTransaction,
     DynamicFeeTransaction,
@@ -28,10 +28,10 @@ class ApeOptimismError(ApeException):
     """
 
 
-def _create_network_config(
-    required_confirmations: int = 1, block_time: int = 2, **kwargs
+def _create_config(
+    required_confirmations: int = 1, block_time: int = 2, cls: Type = NetworkConfig, **kwargs
 ) -> NetworkConfig:
-    return NetworkConfig(
+    return cls(
         required_confirmations=required_confirmations,
         block_time=block_time,
         default_transaction_type=TransactionType.STATIC,
@@ -39,24 +39,25 @@ def _create_network_config(
     )
 
 
-def _create_local_config(default_provider: Optional[str] = None, **kwargs) -> NetworkConfig:
-    return _create_network_config(
+def _create_local_config(default_provider: Optional[str] = None, use_fork: bool = False, **kwargs):
+    return _create_config(
         block_time=0,
         default_provider=default_provider,
         gas_limit="max",
         required_confirmations=0,
         transaction_acceptance_timeout=DEFAULT_LOCAL_TRANSACTION_ACCEPTANCE_TIMEOUT,
+        cls=ForkedNetworkConfig if use_fork else NetworkConfig,
         **kwargs,
     )
 
 
 class OptimismConfig(PluginConfig):
-    mainnet: NetworkConfig = _create_network_config()
-    mainnet_fork: NetworkConfig = _create_local_config()
-    goerli: NetworkConfig = _create_network_config()
-    goerli_fork: NetworkConfig = _create_local_config()
-    sepolia: NetworkConfig = _create_network_config()
-    sepolia_fork: NetworkConfig = _create_local_config()
+    mainnet: NetworkConfig = _create_config()
+    mainnet_fork: ForkedNetworkConfig = _create_local_config(use_fork=True)
+    goerli: NetworkConfig = _create_config()
+    goerli_fork: ForkedNetworkConfig = _create_local_config(use_fork=True)
+    sepolia: NetworkConfig = _create_config()
+    sepolia_fork: ForkedNetworkConfig = _create_local_config(use_fork=True)
     local: NetworkConfig = _create_local_config(default_provider="test")
     default_network: str = LOCAL_NETWORK_NAME
 
