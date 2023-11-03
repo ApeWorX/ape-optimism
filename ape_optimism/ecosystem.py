@@ -56,7 +56,7 @@ class OptimismConfig(PluginConfig):
     mainnet_fork: ForkedNetworkConfig = _create_local_config(use_fork=True)
     goerli: NetworkConfig = _create_config()
     goerli_fork: ForkedNetworkConfig = _create_local_config(use_fork=True)
-    sepolia: NetworkConfig = _create_network_config()
+    sepolia: NetworkConfig = _create_config()
     sepolia_fork: ForkedNetworkConfig = _create_local_config(use_fork=True)
     local: NetworkConfig = _create_local_config(default_provider="test")
     default_network: str = LOCAL_NETWORK_NAME
