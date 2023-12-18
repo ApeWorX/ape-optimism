@@ -19,7 +19,7 @@ def test_create_transaction(optimism, tx_type, eth_tester_provider):
     (TransactionType.STATIC.value, TransactionType.DYNAMIC.value),
 )
 def test_encode_transaction(tx_type, optimism, eth_tester_provider):
-    abi = MethodABI.parse_obj(
+    abi = MethodABI.model_validate(
         {
             "type": "function",
             "name": "fooAndBar",

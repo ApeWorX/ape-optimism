@@ -10,14 +10,17 @@ extras_require = {
         "hypothesis>=6.2.0,<7.0",  # Strategy-based fuzzer
     ],
     "lint": [
-        "black>=23.9.1,<24",  # auto-formatter and linter
-        "mypy>=1.5.1,<2",  # Static type analyzer
-        "types-setuptools",  # Needed due to mypy typeshed
+        "black>=23.12.0,<24",  # Auto-formatter and linter
+        "mypy>=1.7.1,<2",  # Static type analyzer
+        "types-setuptools",  # Needed for mypy type shed
         "flake8>=6.1.0,<7",  # Style linter
+        "flake8-breakpoint>=1.1.0,<2",  # Detect breakpoints left in code
+        "flake8-print>=5.0.0,<6",  # Detect print statements left in code
         "isort>=5.10.1,<6",  # Import sorting linter
         "mdformat>=0.7.17",  # Auto-formatter for markdown
         "mdformat-gfm>=0.3.5",  # Needed for formatting GitHub-flavored markdown
         "mdformat-frontmatter>=0.4.1",  # Needed for frontmatters-style headers in issue templates
+        "mdformat-pyproject>=0.0.1",  # Allows configuring in pyproject.toml
     ],
     "release": [  # `release` GitHub Action job uses this
         "setuptools",  # Installation tool
@@ -57,7 +60,8 @@ setup(
     url="https://github.com/ApeWorX/ape-optimism",
     include_package_data=True,
     install_requires=[
-        "eth-ape>=0.6.0,<0.7",
+        "eth-ape>=0.7.0,<0.8",
+        "ethpm-types",  # Use same version as eth-ape
     ],
     python_requires=">=3.8,<4",
     extras_require=extras_require,
