@@ -17,7 +17,7 @@ def optimism(networks):
     return networks.optimism
 
 
-@pytest.fixture
+@pytest.fixture(autouse=True)
 def eth_tester_provider():
     if not ape.networks.active_provider or ape.networks.provider.name != "test":
         with ape.networks.optimism.local.use_provider("test") as provider:
