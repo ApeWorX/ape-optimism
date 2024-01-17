@@ -5,6 +5,4 @@ def test_use_provider(accounts, networks):
 
         assert not receipt.failed
         assert receipt.value == 100
-
-        # Transactions in Optimism are always static-fee type (0).
-        assert receipt.type == 0
+        assert receipt.type == 2
