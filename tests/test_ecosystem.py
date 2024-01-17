@@ -9,9 +9,15 @@ def test_gas_limit(optimism):
 
 # NOTE: None because we want to show the default is STATIC
 @pytest.mark.parametrize("tx_type", (None, 0, "0x0"))
-def test_create_transaction(optimism, tx_type, eth_tester_provider):
+def test_create_transaction_type_0(optimism, tx_type):
     txn = optimism.create_transaction(type=tx_type)
     assert txn.type == TransactionType.STATIC.value
+
+
+@pytest.mark.parametrize("tx_type", (2, "0x02"))
+def test_create_transaction_type_0(optimism, tx_type):
+    txn = optimism.create_transaction(type=tx_type)
+    assert txn.type == TransactionType.DYNAMIC.value
 
 
 @pytest.mark.parametrize(
