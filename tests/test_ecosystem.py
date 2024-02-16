@@ -2,6 +2,8 @@ import pytest
 from ape_ethereum.transactions import TransactionType
 from ethpm_types.abi import MethodABI
 
+from ape_optimism.ecosystem import SYSTEM_TRANSACTION, SystemTransaction
+
 
 def test_gas_limit(optimism):
     assert optimism.config.local.gas_limit == "max"
@@ -40,6 +42,23 @@ def test_create_transaction_type_2(optimism, tx_kwargs):
 
     txn = optimism.create_transaction(**tx_kwargs)
     assert txn.type == TransactionType.DYNAMIC.value
+
+
+def test_create_transaction_type_126(optimism):
+    data = {
+        "chainId": 0,
+        "to": "0x4200000000000000000000000000000000000015",
+        "from": "0xDeaDDEaDDeAdDeAdDEAdDEaddeAddEAdDEAd0001",
+        "gas": 1000000,
+        "nonce": 11021459,
+        "value": 0,
+        "data": "0x",
+        "type": 126,
+        "accessList": [],
+    }
+    actual = optimism.create_transaction(**data)
+    assert isinstance(actual, SystemTransaction)
+    assert actual.type == SYSTEM_TRANSACTION
 
 
 @pytest.mark.parametrize(
