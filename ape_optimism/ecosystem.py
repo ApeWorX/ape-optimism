@@ -8,7 +8,7 @@ from ape_ethereum.ecosystem import (
     NetworkConfig,
     create_network_config,
 )
-from hexbytes import HexBytes
+from eth_pydantic_types import HexBytes
 
 NETWORKS = {
     # chain_id, network_id
