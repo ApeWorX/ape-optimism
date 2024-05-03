@@ -47,7 +47,7 @@ python3 setup.py install
 Installing this plugin adds support for the Optimism ecosystem:
 
 ```bash
-ape console --network optimism:goerli
+ape console --network optimism:sepolia
 ```
 
 ## Development

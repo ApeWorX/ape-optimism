@@ -13,7 +13,6 @@ from eth_pydantic_types import HexBytes
 NETWORKS = {
     # chain_id, network_id
     "mainnet": (10, 10),
-    "goerli": (420, 420),
     "sepolia": (11155420, 11155420),
 }
 SYSTEM_TRANSACTION = 126
@@ -28,7 +27,6 @@ class ApeOptimismError(ApeException):
 # NOTE: Forked networks automatically are included.
 class OptimismConfig(BaseEthereumConfig):
     mainnet: NetworkConfig = create_network_config(block_time=2)
-    goerli: NetworkConfig = create_network_config(block_time=2)
     sepolia: NetworkConfig = create_network_config(block_time=2)
 
 
