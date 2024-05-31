@@ -4,12 +4,12 @@ from click.testing import CliRunner
 
 EXPECTED_OUTPUT = """
 optimism
+├── local  (default)
+│   └── test  (default)
 ├── mainnet
-│   └── geth  (default)
-├── sepolia
-│   └── geth  (default)
-└── local  (default)
-    └── test  (default)
+│   └── node  (default)
+└── sepolia
+    └── node  (default)
 """.strip()
 
 
@@ -45,8 +45,8 @@ def assert_rich_text(actual: str, expected: str):
 
 
 def test_networks(runner, cli, optimism):
-    optimism.mainnet.set_default_provider("geth")
-    optimism.sepolia.set_default_provider("geth")
+    optimism.mainnet.set_default_provider("node")
+    optimism.sepolia.set_default_provider("node")
 
-    result = runner.invoke(cli, ["networks", "list"])
+    result = runner.invoke(cli, ("networks", "list"))
     assert_rich_text(result.output, EXPECTED_OUTPUT)
