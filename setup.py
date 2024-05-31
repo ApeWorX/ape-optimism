@@ -60,7 +60,7 @@ setup(
     url="https://github.com/ApeWorX/ape-optimism",
     include_package_data=True,
     install_requires=[
-        "eth-ape>=0.8.0,<0.9",
+        "eth-ape>=0.8.1,<0.9",
         "ethpm-types",  # Use same version as eth-ape
     ],
     python_requires=">=3.9,<4",
