@@ -1,4 +1,4 @@
-from typing import cast
+from typing import TYPE_CHECKING, cast
 
 from ape.api import TransactionAPI
 from ape.exceptions import ApeException, APINotImplementedError
@@ -8,7 +8,9 @@ from ape_ethereum.ecosystem import (
     NetworkConfig,
     create_network_config,
 )
-from eth_pydantic_types import HexBytes
+
+if TYPE_CHECKING:
+    from eth_pydantic_types import HexBytes
 
 NETWORKS = {
     # chain_id, network_id
@@ -34,7 +36,7 @@ class SystemTransaction(TransactionAPI):
     type: int = SYSTEM_TRANSACTION
 
     @property
-    def txn_hash(self) -> HexBytes:
+    def txn_hash(self) -> "HexBytes":
         raise APINotImplementedError("Unable to calculate the hash of system transactions.")
 
     def serialize_transaction(self) -> bytes:
