@@ -68,3 +68,9 @@ def __getattr__(name: str) -> Any:
 
     else:
         raise AttributeError(name)
+
+__all__ = [
+    "NETWORKS",
+    "Optimism",
+    "OptimismConfig",
+]
