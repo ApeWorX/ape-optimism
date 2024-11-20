@@ -1,5 +1,3 @@
-from typing import Any
-
 from ape import plugins
 
 
@@ -50,7 +48,7 @@ def providers():
     yield "optimism", LOCAL_NETWORK_NAME, LocalProvider
 
 
-def __getattr__(name: str) -> Any:
+def __getattr__(name: str):
     if name == "NETWORKS":
         from .ecosystem import NETWORKS
 
