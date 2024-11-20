@@ -1,3 +1,5 @@
+from typing import Any
+
 from ape import plugins
 
 
@@ -46,3 +48,23 @@ def providers():
         yield "optimism", network_name, Node
 
     yield "optimism", LOCAL_NETWORK_NAME, LocalProvider
+
+
+def __getattr__(name: str) -> Any:
+    if name == "NETWORKS":
+        from .ecosystem import NETWORKS
+
+        return NETWORKS
+
+    elif name == "Optimism":
+        from .ecosystem import Optimism
+
+        return Optimism
+
+    elif name == "OptimismConfig":
+        from .ecosystem import OptimismConfig
+
+        return OptimismConfig
+
+    else:
+        raise AttributeError(name)
