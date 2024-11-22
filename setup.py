@@ -22,7 +22,7 @@ extras_require = {
         "mdformat>=0.7.19",  # Auto-formatter for markdown
         "mdformat-gfm>=0.3.5",  # Needed for formatting GitHub-flavored markdown
         "mdformat-frontmatter>=0.4.1",  # Needed for frontmatters-style headers in issue templates
-        "mdformat-pyproject>=0.0.1",  # Allows configuring in pyproject.toml
+        "mdformat-pyproject>=0.0.2",  # Allows configuring in pyproject.toml
     ],
     "release": [  # `release` GitHub Action job uses this
         "setuptools",  # Installation tool
