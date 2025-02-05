@@ -76,6 +76,11 @@ networks:
     - name: mainnet
       ecosystem: fraxtal
       base_ecosystem_plugin: optimism
+
+node:
+ fraxtal:
+    mainnet:
+      uri: https://rpc.frax.com
 ```
 
 There are two main benefits of using Optimism as the base-class instead of Ethereum for networks using the OP stack:
