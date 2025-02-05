@@ -81,7 +81,7 @@ networks:
 There are two main benefits of using Optimism as the base-class instead of Ethereum for networks using the OP stack:
 
 1. **Closer defaults**: The block time default is `2` for Optimism networks, which may be a better default value than Ethereum's higher block time parameters.
-2. **Existence of System Transactions**: The Optimism base-class is aware of system transactions, which are transactions invoked by the sequence.
+2. **Existence of System Transactions**: The Optimism base-class is aware of system transactions, which are transactions invoked by the sequencer.
 
 ## Development
 
