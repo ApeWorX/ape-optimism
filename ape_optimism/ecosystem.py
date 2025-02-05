@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, cast
+from typing import cast
 
 from ape.api import TransactionAPI
 from ape.exceptions import ApeException, APINotImplementedError
@@ -8,9 +8,7 @@ from ape_ethereum.ecosystem import (
     NetworkConfig,
     create_network_config,
 )
-
-if TYPE_CHECKING:
-    from eth_pydantic_types import HexBytes
+from eth_pydantic_types import HexBytes
 
 NETWORKS = {
     # chain_id, network_id
@@ -34,16 +32,30 @@ class OptimismConfig(BaseEthereumConfig):
 
 class SystemTransaction(TransactionAPI):
     type: int = SYSTEM_TRANSACTION
+    _hash: HexBytes
+
+    def __init__(self, *args, **kwargs):
+        hash = kwargs.pop("hash", None)
+        super().__init__(*args, **kwargs)
+        self._hash = hash
 
     @property
     def txn_hash(self) -> "HexBytes":
-        raise APINotImplementedError("Unable to calculate the hash of system transactions.")
+        return self._hash
 
     def serialize_transaction(self) -> bytes:
         raise APINotImplementedError("Unable to serialize system transactions.")
 
 
 class Optimism(Ethereum):
+    """
+    A base class for Optimism or OP-stack networks.
+    The main differences from Ethereum are:
+
+    1. Different network defaults (block time is only '2', by default).
+    2. Recognition of "System transactions" (type 126).
+    """
+
     @property
     def config(self) -> OptimismConfig:  # type: ignore
         return cast(OptimismConfig, self.config_manager.get_config("optimism"))

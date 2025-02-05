@@ -1,6 +1,7 @@
 import pytest
 from ape_ethereum.transactions import TransactionType
 from ethpm_types.abi import MethodABI
+from hexbytes import HexBytes
 
 from ape_optimism.ecosystem import SYSTEM_TRANSACTION, SystemTransaction
 
@@ -45,6 +46,7 @@ def test_create_transaction_type_2(optimism, tx_kwargs):
 
 
 def test_create_transaction_type_126(optimism):
+    txn_hash = "0x417b3339801514042a4b3fa24658931438389996b29d0749cc7555a13a9ad89a"
     data = {
         "chainId": 0,
         "to": "0x4200000000000000000000000000000000000015",
@@ -55,10 +57,12 @@ def test_create_transaction_type_126(optimism):
         "data": "0x",
         "type": 126,
         "accessList": [],
+        "hash": HexBytes(txn_hash),
     }
     actual = optimism.create_transaction(**data)
     assert isinstance(actual, SystemTransaction)
     assert actual.type == SYSTEM_TRANSACTION
+    assert actual.txn_hash == HexBytes(txn_hash)
 
 
 @pytest.mark.parametrize(
