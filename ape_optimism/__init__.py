@@ -54,18 +54,17 @@ def __getattr__(name: str):
 
         return NETWORKS
 
-    elif name == "Optimism":
+    if name == "Optimism":
         from .ecosystem import Optimism
 
         return Optimism
 
-    elif name == "OptimismConfig":
+    if name == "OptimismConfig":
         from .ecosystem import OptimismConfig
 
         return OptimismConfig
 
-    else:
-        raise AttributeError(name)
+    raise AttributeError(name)
 
 
 __all__ = [
