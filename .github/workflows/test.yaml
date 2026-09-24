@@ -24,14 +24,14 @@ jobs:
         - name: Install Dependencies
           run: uv sync --group lint
 
-        - name: Run Ruff Lint
+        - name: Run Ruff Linter
           run: uv run ruff check .
 
-        - name: Run Ruff Format
+        - name: Run Ruff Formatter
           run: uv run ruff format --check .
 
         - name: Run mdformat
-          run: uv run mdformat --check README.md CONTRIBUTING.md
+          run: uv run mdformat --check *.md
 
     type-check:
         runs-on: ubuntu-latest
@@ -55,10 +55,13 @@ jobs:
 
         strategy:
             matrix:
-                os: [ubuntu-latest, macos-latest]
+                os: [ubuntu-latest, macos-latest]   # eventually add `windows-latest`
                 python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+
         steps:
         - uses: actions/checkout@v6
+          with:
+            fetch-depth: 0
 
         - name: Install uv
           uses: astral-sh/setup-uv@v7
@@ -69,5 +72,25 @@ jobs:
           run: uv sync --group test
 
         - name: Run Tests
-          run: uv run ape test -m "not fuzzing" -n 0 -s --cov
+          run: uv run pytest -m "not fuzzing" -s --cov=ape_optimism -n auto
 
+# NOTE: uncomment this block after you've marked tests with @pytest.mark.fuzzing
+#    fuzzing:
+#        runs-on: ubuntu-latest
+#
+#        strategy:
+#            fail-fast: true
+#
+#        steps:
+#        - uses: actions/checkout@v6
+#
+#        - name: Install uv
+#          uses: astral-sh/setup-uv@v7
+#          with:
+#              python-version: "3.10"
+#
+#        - name: Install Dependencies
+#          run: uv sync --group test
+#
+#        - name: Run Tests
+#          run: uv run pytest -m "fuzzing" --no-cov -s

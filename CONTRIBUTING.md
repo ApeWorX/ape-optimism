@@ -7,7 +7,8 @@ To get started with working on the codebase, use the following steps prepare you
 git clone https://github.com/ApeWorX/ape-optimism.git
 cd ape-optimism
 
-# install the developer dependencies
+# install the package and developer dependency groups with uv
+# (https://docs.astral.sh/uv/)
 uv sync --group dev
 ```
 
