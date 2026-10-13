@@ -58,7 +58,7 @@ class Optimism(Ethereum):
 
     @property
     def config(self) -> OptimismConfig:  # type: ignore
-        return cast(OptimismConfig, self.config_manager.get_config("optimism"))
+        return cast("OptimismConfig", self.config_manager.get_config("optimism"))
 
     def create_transaction(self, **kwargs) -> TransactionAPI:
         if kwargs.get("type") == SYSTEM_TRANSACTION:
